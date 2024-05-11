@@ -1,0 +1,24 @@
+server:
+  port: 8100
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: nuts
+          predicates:
+            - Path=/gates/nuts/**
+          uri: lb://nuts
+          filters:
+            - RewritePath=/gates/nuts/(?<segment>.*), /$\{segment}
+        - id: berries
+          predicates:
+            - Path=/gates/berries/**
+          uri: lb://berries
+          filters:
+            - RewritePath=/gates/berries/(?<segment>.*), /$\{segment}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,9 @@
+rootProject.name = "spring-msa"
+include 'eureka'
+include 'gates'
+include 'gates:nuts'
+findProject(':gates:nuts')?.name = 'nuts'
+include 'gates:berries'
+findProject(':gates:berries')?.name = 'berries'
+include 'gateway'
+
