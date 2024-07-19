@@ -1,0 +1,33 @@
+application-info:
+  jwt:
+    secret: cb6f76e3788c0cbad1163a37962c4c61f27a0cf9be195fc309c28e035d3142a3
+    default-expire-days: 3
+server:
+  port: 9300
+spring:
+  application:
+    name: auth
+  profiles:
+    default: local
+  datasource:
+    hikari:
+      driver-class-name: org.mariadb.jdbc.Driver
+      auto-commit: true
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      pool-name: msa_auth_pool
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+#        order_inserts: true
+#        order_updates: true
+        jdbc:
+          batch_size: 1000
+        default_batch_fetch_size : 1000
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl

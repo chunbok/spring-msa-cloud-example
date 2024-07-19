@@ -6,4 +6,5 @@ findProject(':gates:nuts')?.name = 'nuts'
 include 'gates:berries'
 findProject(':gates:berries')?.name = 'berries'
 include 'gateway'
+include 'auth'
 

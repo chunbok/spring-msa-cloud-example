@@ -8,15 +8,57 @@ Content-Type: application/json
 ### request to nut throw with gateway
 GET http://localhost:8100/gates/nuts/taken
 Content-Type: application/json
+token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtc2FfYXV0aCIsImlhdCI6MTcxNjExNjczMCwiZXhwIjoxNzE2Mzc1OTMwfQ.Mu8RyGnfyObKgssRwzuQu4wZJOzz9jF11z4M0yv6ILrqms7sssnQpBpFE8frF5fI_fd_6U9WsXEBLXH8APLyWw
 
 
 ""
 
-###
-POST http://localhost:8100/login
+### register
+POST http://localhost:{{authport}}/auth/register
 Content-Type: application/json
 
 {
-  "user": "user",
-  "password": "password"
+  "userId": "chunbok4",
+  "password": "chunbok4"
+}
+
+### login
+POST http://localhost:{{authport}}/auth/login
+Content-Type: application/json
+
+{
+  "userId": "chunbok",
+  "password": "chunbok"
+}
+
+### user out
+DELETE http://localhost:{{authport}}/auth/user
+Content-Type: application/json
+
+{
+  "userId": "chunbok3"
+}
+
+### role register
+PUT http://localhost:{{authport}}/auth/role
+Content-Type: application/json
+
+{
+  "service": "BERRIES",
+  "contact": "OPEN",
+  "description": "Open api contact role for Berries service"
+}
+
+### role assign
+POST http://localhost:9300/auth/assign_role
+Content-Type: application/json
+
+{
+  "userNo": 1,
+  "roles": [
+    {
+      "service" : "NUTS",
+      "contact": "OPEN"
+    }
+  ]
 }
