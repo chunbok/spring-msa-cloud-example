@@ -8,7 +8,7 @@ Content-Type: application/json
 ### request to nut throw with gateway
 GET http://localhost:8100/gates/nuts/taken
 Content-Type: application/json
-token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtc2FfYXV0aCIsImlhdCI6MTcxNjExNjczMCwiZXhwIjoxNzE2Mzc1OTMwfQ.Mu8RyGnfyObKgssRwzuQu4wZJOzz9jF11z4M0yv6ILrqms7sssnQpBpFE8frF5fI_fd_6U9WsXEBLXH8APLyWw
+Authorization: bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtc2Ffc3ViamVjdCIsImlhdCI6MTcyNDg1MTAzNywiZXhwIjoxNzU2Mzg3MDM3LCJ0eXBlIjoiRElSRUNUIn0.AJ2_Km9wQrvgRZDAZ3rCDIQqcgxTPLARKgzZJzZZAhgvHCOobE3SCuG0v6XfwIwd13P3obw-a3jX_EaK2X-gzQ
 
 
 ""
@@ -18,8 +18,8 @@ POST http://localhost:{{authport}}/auth/register
 Content-Type: application/json
 
 {
-  "userId": "chunbok4",
-  "password": "chunbok4"
+  "userId": "chunbok",
+  "password": "chunbok"
 }
 
 ### login

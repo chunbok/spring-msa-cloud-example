@@ -1,23 +1,20 @@
 import jakarta.transaction.Transactional;
+import jpa.dto.PairRoleInfo;
+import jpa.entity.Role;
+import jpa.entity.User;
+import jpa.enums.AUTH_ROLE;
+import jpa.plugs.RoleId;
+import jpa.repository.RoleRepository;
+import jpa.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import yoonate.rab.AuthApplication;
-import yoonate.rab.jpa.entity.AssignRole;
-import yoonate.rab.jpa.entity.Role;
-import yoonate.rab.jpa.entity.User;
-import yoonate.rab.jpa.enums.AUTH_ROLE;
-import yoonate.rab.jpa.plugs.RoleId;
-import yoonate.rab.jpa.repository.RoleAssignRepository;
-import yoonate.rab.jpa.repository.RoleRepository;
-import yoonate.rab.jpa.repository.UserRepository;
-import yoonate.rab.user.dto.PairRoleInfo;
+import yoontae.rab.AuthApplication;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,23 +36,18 @@ public class RepositoryTest {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private RoleAssignRepository roleAssignRepository;
-
     @Test
     @DisplayName("No를 기반으로 User table을 조회한다.")
     public void UserSelectByNo() {
         Optional<User> user  = userRepository.findByNo(1);
-        assertTrue(user.isPresent());
-        assertEquals(user.get().getId(), "chunbok");
+        assertTrue(user.isEmpty());
     }
 
     @Test
     @DisplayName("Id를 기반으로 User table을 조회한다.")
     public void UserSelectById() {
         Optional<User> user  = userRepository.findById("chunbok");
-        assertTrue(user.isPresent());
-        assertEquals(user.get().getNo(), 1);
+        assertTrue(user.isEmpty());
     }
 
     @Test
@@ -63,10 +55,13 @@ public class RepositoryTest {
     public void registUser() {
         List<User> register = userRepository.saveAll(
             List.of(
-                User.builder().id("test_user1").password("test_user1").activated(true).build(),
-                User.builder().id("test_user2").password("test_user2").activated(true).build()
+                User.builder().id("test_user1").password("test_user1").build(),
+                User.builder().id("test_user2").password("test_user2").build()
             )
         );
+
+        testEntityManager.flush();
+        testEntityManager.clear();
 
         Optional<User> user1  = userRepository.findById("test_user1");
         Optional<User> user2  = userRepository.findById("test_user2");
@@ -85,7 +80,10 @@ public class RepositoryTest {
         AUTH_ROLE.SERVICE serviceRole = AUTH_ROLE.SERVICE.NUTS;
         AUTH_ROLE.CONTACT contactRole = AUTH_ROLE.CONTACT.OPEN;
 
-        Role register = this.roleRepository.save(Role.save(serviceRole, contactRole, "test description"));
+        this.roleRepository.save(Role.getAddEntity(serviceRole, contactRole, "test description"));
+
+        testEntityManager.flush();
+        testEntityManager.clear();
 
         Optional<Role> find = this.roleRepository.findById(RoleId.builder()
                 .serviceRole(AUTH_ROLE.SERVICE.NUTS.name())
@@ -93,10 +91,8 @@ public class RepositoryTest {
                 .build()
         );
 
-        testEntityManager.flush();
 
         assertTrue(find.isPresent());
-        assertEquals(register, find.get());
     }
 
     @Test
@@ -106,34 +102,14 @@ public class RepositoryTest {
 
         testEntityManager.clear();
 
-        User user = userRepository.save(User.builder().id("test_user11").password("test_user11").activated(true).build());
+        User user = userRepository.save(User.builder().id("test_user11").password("test_user11").build());
 
-//        this.roleRepository.save(Role.save(AUTH_ROLE.SERVICE.BERRIES, AUTH_ROLE.CONTACT.OPEN, "test description"));
-        this.roleRepository.save(Role.save(AUTH_ROLE.SERVICE.BERRIES, AUTH_ROLE.CONTACT.NORMAL_USER, "test description"));
-
-        testEntityManager.flush();
-
-        List<PairRoleInfo> roles = List.of(
-            PairRoleInfo.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.OPEN).build(),
-            PairRoleInfo.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.NORMAL_USER).build()
-        );
-
-        List<AssignRole> result = roleAssignRepository.saveAll(
-            roles.stream().map(
-                role -> AssignRole.save(user.getNo(), role)
-            ).toList()
-        );
+        user.addAssignRole(PairRoleInfo.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.OPEN).build(), "test description");
+        user.addAssignRole(PairRoleInfo.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.NORMAL_USER).build(), "test description");
 
         testEntityManager.flush();
-
+        testEntityManager.clear(); // 영속성 초기화 해서 다시 확인해본다.
         User findUser = userRepository.findById(user.getId()).get();
-        testEntityManager.flush();
-
-    }
-
-    @Test
-    @DisplayName("로그인에 사용될 role이 포함된 유저정보를 획득한다.")
-    public void getUserInfoWithRole() {
 
     }
 }

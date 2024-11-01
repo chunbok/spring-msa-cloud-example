@@ -7,4 +7,6 @@ include 'gates:berries'
 findProject(':gates:berries')?.name = 'berries'
 include 'gateway'
 include 'auth'
+include 'include'
+include 'entity'
 

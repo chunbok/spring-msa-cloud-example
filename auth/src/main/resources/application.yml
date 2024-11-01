@@ -1,7 +1,9 @@
 application-info:
   jwt:
     secret: cb6f76e3788c0cbad1163a37962c4c61f27a0cf9be195fc309c28e035d3142a3
-    default-expire-days: 3
+    default-access-expire-days: 1
+    default-refresh-expire-days: 30
+    default-direct-expire-days: 365
 server:
   port: 9300
 spring:
