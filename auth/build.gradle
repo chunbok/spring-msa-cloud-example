@@ -5,7 +5,7 @@ plugins {
 }
 
 
-group = 'yoontea.rab'
+group = 'yoontae.lab'
 version = '1.0-SNAPSHOT'
 
 java {
