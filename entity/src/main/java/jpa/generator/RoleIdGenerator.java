@@ -1,6 +1,6 @@
 package jpa.generator;
 
-import jpa.dto.PairRoleInfo;
+import auth.PairRoleInfo;
 import jpa.entity.Role;
 import jpa.plugs.RoleId;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +16,10 @@ public class RoleIdGenerator implements IdentifierGenerator {
     public RoleId generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) {
         Role role = (Role) o;
 
-        return RoleIdGenerator.GenerateIdByInfo(role.getRoleInfo());
+        return RoleIdGenerator.generateIdByInfo(role.getRoleInfo());
     }
 
-    public static RoleId GenerateIdByInfo(PairRoleInfo info) {
+    public static RoleId generateIdByInfo(PairRoleInfo info) {
         return Optional.of(info).map(pairRoleInfo -> RoleId.builder()
                 .serviceRole(pairRoleInfo.getService().name())
                 .contactRole(pairRoleInfo.getContact().name())

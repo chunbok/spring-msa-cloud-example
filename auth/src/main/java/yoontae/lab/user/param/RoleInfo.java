@@ -1,7 +1,7 @@
 package yoontae.lab.user.param;
 
+import auth.AUTH_ROLE;
 import jakarta.validation.constraints.NotNull;
-import jpa.enums.AUTH_ROLE;
 import lombok.Builder;
 
 @Builder

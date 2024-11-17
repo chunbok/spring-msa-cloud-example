@@ -13,7 +13,7 @@ public class AssignRoleIdGenerator implements IdentifierGenerator {
 
         return AssignRoleId.builder()
                 .userNo(role.getUser().getNo())
-                .roleId(RoleIdGenerator.GenerateIdByInfo(role.getRole().getRoleInfo()))
+                .roleId(RoleIdGenerator.generateIdByInfo(role.getRole().getRoleInfo()))
                 .build();
     }
 }

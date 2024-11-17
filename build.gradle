@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "yoontea.rab"
+group = "yoontae.rab"
 version = "1.0-SNAPSHOT"
 
 repositories {

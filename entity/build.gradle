@@ -21,6 +21,7 @@ java {
 }
 
 dependencies {
+    implementation project(":include")
     implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.hibernate:hibernate-core:6.4.10.Final'

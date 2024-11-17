@@ -1,7 +1,7 @@
 package jpa.entity;
 
+import auth.PairRoleInfo;
 import jakarta.persistence.*;
-import jpa.dto.PairRoleInfo;
 import jpa.generator.AssignRoleIdGenerator;
 import jpa.plugs.AssignRoleId;
 import jpa.plugs.RoleId;

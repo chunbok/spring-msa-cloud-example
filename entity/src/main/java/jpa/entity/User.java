@@ -1,9 +1,9 @@
 package jpa.entity;
 
+import auth.PairRoleInfo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import jpa.dto.PairRoleInfo;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;

@@ -1,7 +1,9 @@
 package yoontae.lab.user;
 
-import jpa.entity.Role;
-import jpa.entity.User;
+import beans.UserService;
+import beans.result.RoleResult;
+import beans.result.SessionResult;
+import beans.result.UserResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -9,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
-import redis.entity.Session;
 import yoontae.lab.user.param.AssignInfo;
 import yoontae.lab.user.param.RoleInfo;
 import yoontae.lab.user.param.UserInfo;
@@ -25,22 +26,22 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(value = "register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> doRegisterMember(@RequestBody UserInfo userInfo) {
+    public ResponseEntity<UserResult> doRegisterMember(@RequestBody UserInfo userInfo) {
         return ResponseEntity.ok(userService.register(userInfo.userId(), userInfo.password()));
     }
 
     @PostMapping(value = "login", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Session> doLogin(@RequestBody UserInfo userInfo) {
+    public ResponseEntity<SessionResult> doLogin(@RequestBody UserInfo userInfo) {
         return ResponseEntity.ok(userService.login(userInfo.userId()));
     }
 
     @DeleteMapping(value="user", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> doUserOut(@RequestBody UserInfo userInfo) {
+    public ResponseEntity<UserResult> doUserOut(@RequestBody UserInfo userInfo) {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userService.userServiceOut(userInfo.userId()));
     }
 
     @PutMapping(value="role", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Role> registerRole(@RequestBody RoleInfo role) {
+    public ResponseEntity<RoleResult> registerRole(@RequestBody RoleInfo role) {
         return ResponseEntity.ok(userService.registerRole(role.service(), role.contact(), role.description()));
     }
 

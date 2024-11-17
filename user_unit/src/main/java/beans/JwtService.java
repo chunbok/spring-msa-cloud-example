@@ -1,4 +1,4 @@
-package yoontae.lab.jwt;
+package beans;
 
 import auth.AuthInformation;
 import io.jsonwebtoken.Jwts;
@@ -6,6 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import jpa.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -14,7 +15,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Map;
 
-@Service
+
+@Component
 @RequiredArgsConstructor
 public class JwtService {
 

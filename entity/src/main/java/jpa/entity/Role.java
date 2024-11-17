@@ -1,9 +1,9 @@
 package jpa.entity;
 
 
+import auth.AUTH_ROLE;
+import auth.PairRoleInfo;
 import jakarta.persistence.*;
-import jpa.dto.PairRoleInfo;
-import jpa.enums.AUTH_ROLE;
 import jpa.generator.RoleIdGenerator;
 import jpa.plugs.RoleId;
 import lombok.*;

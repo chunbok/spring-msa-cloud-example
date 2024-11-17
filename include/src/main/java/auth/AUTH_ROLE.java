@@ -1,4 +1,4 @@
-package jpa.enums;
+package auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

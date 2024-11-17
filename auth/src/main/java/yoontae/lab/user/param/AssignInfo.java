@@ -1,6 +1,6 @@
 package yoontae.lab.user.param;
 
-import jpa.dto.PairRoleInfo;
+import auth.PairRoleInfo;
 import lombok.Builder;
 
 import java.util.List;
