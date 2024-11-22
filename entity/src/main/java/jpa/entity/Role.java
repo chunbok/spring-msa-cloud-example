@@ -2,7 +2,7 @@ package jpa.entity;
 
 
 import auth.AUTH_ROLE;
-import auth.PairRoleInfo;
+import auth.PAIR_ROLE;
 import jakarta.persistence.*;
 import jpa.generator.RoleIdGenerator;
 import jpa.plugs.RoleId;
@@ -42,7 +42,7 @@ public class Role {
     private List<AssignRole> assignRoles = new ArrayList<>();
 
     @Transient
-    private PairRoleInfo roleInfo;
+    private PAIR_ROLE roleInfo;
 
     @PrePersist
     public void prePersist() {
@@ -52,7 +52,7 @@ public class Role {
 
     public static Role getAddEntity(AUTH_ROLE.SERVICE serviceRole, AUTH_ROLE.CONTACT contactRole, String description) {
         return Role.builder()
-                .roleInfo(PairRoleInfo.builder()
+                .roleInfo(PAIR_ROLE.builder()
                         .service(serviceRole)
                         .contact(contactRole)
                         .build())

@@ -1,9 +1,9 @@
 package yoontae.lab.user;
 
-import beans.UserService;
-import beans.result.RoleResult;
-import beans.result.SessionResult;
-import beans.result.UserResult;
+import auth.result.UserService;
+import auth.RoleResult;
+import auth.result.SessionResult;
+import auth.result.UserResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

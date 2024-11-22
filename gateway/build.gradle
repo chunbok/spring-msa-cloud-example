@@ -10,7 +10,7 @@ configurations {
     }
 }
 
-group = 'yoontea.rab'
+group = 'yoontae.rab'
 version = '1.0-SNAPSHOT'
 
 java {
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(":include")
+    implementation project(":stamps")
     implementation project(":entity")
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'

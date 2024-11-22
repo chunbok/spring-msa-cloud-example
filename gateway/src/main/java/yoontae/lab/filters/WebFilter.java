@@ -1,6 +1,6 @@
 package yoontae.lab.filters;
 
-import auth.AuthInformation;
+import auth.AUTH_TOKEN;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -107,12 +107,12 @@ public class WebFilter {
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Expired");
             }
 
-            String tokenType =  claims.get(AuthInformation.tokenTypeKey, String.class);
-            User user = claims.get(AuthInformation.payloadYUserKey, User.class);
+            String tokenType =  claims.get(AUTH_TOKEN.tokenTypeKey, String.class);
+            User user = claims.get(AUTH_TOKEN.payloadYUserKey, User.class);
 
             PreAuthenticatedAuthenticationToken token = new PreAuthenticatedAuthenticationToken(null, false);
 
-            if(AuthInformation.TokenType.DIRECT.name().equals(tokenType)) {
+            if(AUTH_TOKEN.TOKEN_TYPE.DIRECT.name().equals(tokenType)) {
                 token = new PreAuthenticatedAuthenticationToken(tokenType, true);
             }
 

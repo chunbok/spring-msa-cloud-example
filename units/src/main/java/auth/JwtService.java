@@ -1,13 +1,11 @@
-package beans;
+package auth;
 
-import auth.AuthInformation;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jpa.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
@@ -29,7 +27,7 @@ public class JwtService {
     @Value("${application-info.jwt.default-direct-expire-days}")
     private long expireDayForDirect;
 
-    public String generateToken(User payLoad, AuthInformation.TokenType type) {
+    public String generateToken(User payLoad, AUTH_TOKEN.TOKEN_TYPE type) {
         LocalDateTime now = LocalDateTime.now();
 
 //        Key key = new SecretKeySpec(secret.getBytes(), SignatureAlgorithm.RS256.getValue());
@@ -41,20 +39,20 @@ public class JwtService {
         };
 
         return Jwts.builder()
-                .subject(AuthInformation.TokenSubject.MSA.getSubject())
+                .subject(AUTH_TOKEN.TOKEN_SUBJECT.MSA.getSubject())
                 .issuedAt(new Date())
                 .expiration(Date.from(exp.atZone(ZoneId.systemDefault()).toInstant()))
                 .signWith(key)
                 .claims(
                     Map.of(
-                        AuthInformation.tokenTypeKey, type.name(),
-                        AuthInformation.payloadYUserKey , payLoad
+                        AUTH_TOKEN.tokenTypeKey, type.name(),
+                        AUTH_TOKEN.payloadYUserKey , payLoad
                     )
                 )
                 .compact();
     }
 
     public String generateToken(User user) {
-        return this.generateToken(user, AuthInformation.TokenType.ACCESS);
+        return this.generateToken(user, AUTH_TOKEN.TOKEN_TYPE.ACCESS);
     }
 }

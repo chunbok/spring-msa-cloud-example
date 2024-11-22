@@ -6,14 +6,14 @@ import lombok.RequiredArgsConstructor;
 /**
  * 토큰/로그인 관련 액션을 위한 정보
  */
-public class AuthInformation {
+public class AUTH_TOKEN {
 
     public static final String tokenTypeKey = "type";
     public static final String payloadYUserKey = "user";
 
-    private AuthInformation() {}
+    private AUTH_TOKEN() {}
 
-    public enum TokenType {
+    public enum TOKEN_TYPE {
         ACCESS,
         REFRESH,
         DIRECT;
@@ -21,7 +21,7 @@ public class AuthInformation {
 
     @RequiredArgsConstructor
     @Getter
-    public enum TokenSubject {
+    public enum TOKEN_SUBJECT {
         MSA("msa_subject");
 
         private final String subject;

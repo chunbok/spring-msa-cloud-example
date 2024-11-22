@@ -1,5 +1,6 @@
-package beans.result;
+package auth.result;
 
+import auth.RoleResult;
 import jpa.entity.User;
 import lombok.Builder;
 

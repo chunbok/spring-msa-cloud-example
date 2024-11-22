@@ -1,6 +1,6 @@
 package jpa.entity;
 
-import auth.PairRoleInfo;
+import auth.PAIR_ROLE;
 import jakarta.persistence.*;
 import jpa.generator.AssignRoleIdGenerator;
 import jpa.plugs.AssignRoleId;
@@ -35,7 +35,7 @@ public class AssignRole {
     })
     private Role role;
 
-    public static AssignRole getSave(int userNo, PairRoleInfo role) {
+    public static AssignRole getSave(int userNo, PAIR_ROLE role) {
         return AssignRole.builder()
             .info(AssignRoleId.builder()
                 .userNo(userNo)

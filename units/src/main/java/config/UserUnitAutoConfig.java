@@ -1,22 +1,19 @@
 package config;
 
 import annotation.AutoConfigureUserService;
-import beans.JwtService;
-import beans.UserService;
+import auth.JwtService;
+import auth.result.UserService;
 import jpa.repository.RoleAssignRepository;
 import jpa.repository.RoleRepository;
 import jpa.repository.UserRepository;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.annotation.Order;
 import redis.repository.SessionRepository;
 
 @AutoConfiguration
 @AutoConfigureUserService
-@ComponentScan("beans")
+@ComponentScan("auth")
 public class UserUnitAutoConfig {
 
     @Bean

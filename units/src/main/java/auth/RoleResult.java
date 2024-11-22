@@ -1,4 +1,4 @@
-package beans.result;
+package auth;
 
 import jpa.entity.AssignRole;
 import jpa.entity.Role;

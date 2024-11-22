@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Builder
-public class PairRoleInfo {
+public class PAIR_ROLE {
     @NotNull
     AUTH_ROLE.SERVICE service;
     @NotNull

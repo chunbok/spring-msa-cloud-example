@@ -1,6 +1,6 @@
 package yoontae.lab.user.param;
 
-import auth.PairRoleInfo;
+import auth.PAIR_ROLE;
 import lombok.Builder;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public record AssignInfo(
         int userNo,
         String userId,
-        List<PairRoleInfo> roles
+        List<PAIR_ROLE> roles
 ) {
 
 }

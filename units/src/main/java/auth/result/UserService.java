@@ -1,11 +1,6 @@
-package beans;
+package auth.result;
 
-import auth.AUTH_ROLE;
-import auth.AuthInformation;
-import auth.PairRoleInfo;
-import beans.result.RoleResult;
-import beans.result.SessionResult;
-import beans.result.UserResult;
+import auth.*;
 import jpa.entity.AssignRole;
 import jpa.entity.Role;
 import jpa.entity.User;
@@ -13,7 +8,6 @@ import jpa.repository.RoleAssignRepository;
 import jpa.repository.RoleRepository;
 import jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import redis.entity.Session;
 import redis.repository.SessionRepository;
 
@@ -59,7 +53,7 @@ public class UserService {
 
         // 다시 로그인 하면 논리 세션을 모두 지우고 다시 생성
         sessionRepository.findByUserId(id).forEach(session -> sessionRepository.deleteById(session.getId()));
-        String directToken = jwtService.generateToken(userInfo, AuthInformation.TokenType.DIRECT);
+        String directToken = jwtService.generateToken(userInfo, AUTH_TOKEN.TOKEN_TYPE.DIRECT);
 
 
         return SessionResult.from(
@@ -80,7 +74,7 @@ public class UserService {
                 , description)));
     }
 
-    public String assignRole(int userNo, List<PairRoleInfo> roles) {
+    public String assignRole(int userNo, List<PAIR_ROLE> roles) {
         //TODO active 상태 확인해야 됨
 
         List<AssignRole> resultList = this.roleAssignRepository.saveAll(

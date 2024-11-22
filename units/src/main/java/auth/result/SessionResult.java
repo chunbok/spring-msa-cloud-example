@@ -1,4 +1,4 @@
-package beans.result;
+package auth.result;
 
 import lombok.Builder;
 import redis.entity.Session;

@@ -1,6 +1,6 @@
 package jpa.entity;
 
-import auth.PairRoleInfo;
+import auth.PAIR_ROLE;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -45,7 +45,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AssignRole> assignRoles = new ArrayList<>();
 
-    public void addAssignRole(PairRoleInfo info, String description) {
+    public void addAssignRole(PAIR_ROLE info, String description) {
         this.assignRoles.add(
                 AssignRole.builder().user(this).role(
                         Role.builder().roleInfo(info).description(description).build()

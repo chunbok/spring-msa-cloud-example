@@ -1,5 +1,4 @@
 import annotation.AutoConfigureUserService;
-import beans.UserService;
 import jakarta.transaction.Transactional;
 import jpa.dto.PairRoleInfo;
 import jpa.entity.Role;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.data.redis.AutoConfigureDataR
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 import java.util.Optional;
