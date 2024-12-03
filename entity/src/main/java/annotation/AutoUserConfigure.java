@@ -1,6 +1,6 @@
 package annotation;
 
-import config.RepositoryConfig;
+import config.UserConfig;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 
 import java.lang.annotation.ElementType;
@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@ImportAutoConfiguration(RepositoryConfig.class)
-public @interface AutoConfigureUserService {
+@ImportAutoConfiguration(UserConfig.class)
+public @interface AutoUserConfigure {
 }

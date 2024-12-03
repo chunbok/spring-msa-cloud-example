@@ -1,8 +1,8 @@
-package jpa.repository;
+package user.jpa.repository;
 
 
-import jpa.entity.Role;
-import jpa.plugs.RoleId;
+import user.jpa.entity.Role;
+import user.jpa.plugs.RoleId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, RoleId> {

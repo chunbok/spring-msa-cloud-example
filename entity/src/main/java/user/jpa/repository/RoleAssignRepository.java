@@ -1,8 +1,8 @@
-package jpa.repository;
+package user.jpa.repository;
 
 
-import jpa.entity.AssignRole;
-import jpa.plugs.AssignRoleId;
+import user.jpa.entity.AssignRole;
+import user.jpa.plugs.AssignRoleId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

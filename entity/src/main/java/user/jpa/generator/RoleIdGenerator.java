@@ -1,8 +1,8 @@
-package jpa.generator;
+package user.jpa.generator;
 
 import auth.PAIR_ROLE;
-import jpa.entity.Role;
-import jpa.plugs.RoleId;
+import user.jpa.entity.Role;
+import user.jpa.plugs.RoleId;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;

@@ -1,7 +1,7 @@
-package jpa.repository;
+package user.jpa.repository;
 
 
-import jpa.entity.User;
+import user.jpa.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

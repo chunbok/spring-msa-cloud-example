@@ -1,7 +1,7 @@
 package yoontae.lab.user;
 
-import auth.result.UserService;
-import auth.RoleResult;
+import auth.UserService;
+import auth.result.RoleResult;
 import auth.result.SessionResult;
 import auth.result.UserResult;
 import lombok.RequiredArgsConstructor;

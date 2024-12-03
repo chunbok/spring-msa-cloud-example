@@ -1,7 +1,7 @@
-package redis.repository;
+package user.redis.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import redis.entity.Session;
+import user.redis.entity.Session;
 
 import java.util.List;
 

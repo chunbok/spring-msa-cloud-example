@@ -1,4 +1,4 @@
-package redis.entity;
+package user.redis.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;

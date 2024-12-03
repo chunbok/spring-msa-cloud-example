@@ -1,7 +1,7 @@
 package auth.result;
 
 import lombok.Builder;
-import redis.entity.Session;
+import user.redis.entity.Session;
 
 import java.time.LocalDateTime;
 

@@ -4,3 +4,28 @@ application-info:
     default-access-expire-days: 1
     default-refresh-expire-days: 30
     default-direct-expire-days: 365
+spring:
+  profiles:
+    default: local
+  datasource:
+    hikari:
+      driver-class-name: org.mariadb.jdbc.Driver
+      auto-commit: true
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      pool-name: msa_auth_pool
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+#        order_inserts: true
+#        order_updates: true
+        jdbc:
+          batch_size: 1000
+        default_batch_fetch_size : 1000
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl

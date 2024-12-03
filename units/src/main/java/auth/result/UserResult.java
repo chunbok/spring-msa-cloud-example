@@ -1,7 +1,6 @@
 package auth.result;
 
-import auth.RoleResult;
-import jpa.entity.User;
+import user.jpa.entity.User;
 import lombok.Builder;
 
 import java.util.List;

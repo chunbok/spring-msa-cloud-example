@@ -1,4 +1,4 @@
-package jpa.entity;
+package user.jpa.entity;
 
 import auth.PAIR_ROLE;
 import jakarta.persistence.*;

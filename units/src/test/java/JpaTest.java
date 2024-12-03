@@ -1,21 +1,24 @@
-package yoontae.lab;
-
-import annotation.AutoConfigureUserService;
+import auth.AUTH_ROLE;
+import auth.PAIR_ROLE;
+import auth.UnitApplication;
+import config.UserUnitAutoConfig;
 import jakarta.transaction.Transactional;
-import jpa.dto.PairRoleInfo;
-import jpa.entity.Role;
-import jpa.entity.User;
-import jpa.enums.AUTH_ROLE;
-import jpa.plugs.RoleId;
-import jpa.repository.RoleRepository;
-import jpa.repository.UserRepository;
+import org.springframework.context.annotation.ComponentScan;
+import user.jpa.entity.Role;
+import user.jpa.entity.User;
+import user.jpa.plugs.RoleId;
+import user.jpa.repository.RoleRepository;
+import user.jpa.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.redis.AutoConfigureDataRedis;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ContextConfiguration;
+import user.redis.repository.SessionRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,35 +27,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
+@ContextConfiguration(classes = UnitApplication.class)
+@ComponentScan()
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@AutoConfigureDataRedis // DataJpaTest에는 Redis이존성이 없으므로 redis 의존성을 추가
-@AutoConfigureUserService
-public class RepositoryTest {
+@ImportAutoConfiguration(classes = {
+        UserUnitAutoConfig.class
+})
+@AutoConfigureDataRedis
+public class JpaTest {
 
     @Autowired
     private TestEntityManager testEntityManager;
 
     @Autowired
-    // autoconfiguration으로 주입됐음 오류가 안뜨게 하는 방법을 찾아야 함
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private UserRepository userRepository;
 
     @Autowired
-    // autoconfiguration으로 주입됐음 오류가 안뜨게 하는 방법을 찾아야 함
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private RoleRepository roleRepository;
 
     @Test
     @DisplayName("No를 기반으로 User table을 조회한다.")
     public void UserSelectByNo() {
-        Optional<User> user  = userRepository.findByNo(1);
+        Optional<User> user  = userRepository.findByNo(0);
         assertTrue(user.isEmpty());
     }
 
     @Test
     @DisplayName("Id를 기반으로 User table을 조회한다.")
     public void UserSelectById() {
-        Optional<User> user  = userRepository.findById("chunbok");
+        Optional<User> user  = userRepository.findById("NoExist");
         assertTrue(user.isEmpty());
     }
 
@@ -110,8 +113,8 @@ public class RepositoryTest {
 
         User user = userRepository.save(User.builder().id("test_user11").password("test_user11").build());
 
-        user.addAssignRole(PairRoleInfo.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.OPEN).build(), "test description");
-        user.addAssignRole(PairRoleInfo.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.NORMAL_USER).build(), "test description");
+        user.addAssignRole(PAIR_ROLE.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.OPEN).build(), "test description");
+        user.addAssignRole(PAIR_ROLE.builder().service(AUTH_ROLE.SERVICE.BERRIES).contact(AUTH_ROLE.CONTACT.NORMAL_USER).build(), "test description");
 
         testEntityManager.flush();
         testEntityManager.clear(); // 영속성 초기화 해서 다시 확인해본다.

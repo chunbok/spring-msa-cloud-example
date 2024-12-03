@@ -1,18 +1,18 @@
 package config;
 
-import annotation.AutoConfigureUserService;
+import annotation.AutoUserConfigure;
 import auth.JwtService;
-import auth.result.UserService;
-import jpa.repository.RoleAssignRepository;
-import jpa.repository.RoleRepository;
-import jpa.repository.UserRepository;
+import auth.UserService;
+import user.jpa.repository.RoleAssignRepository;
+import user.jpa.repository.RoleRepository;
+import user.jpa.repository.UserRepository;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import redis.repository.SessionRepository;
+import user.redis.repository.SessionRepository;
 
 @AutoConfiguration
-@AutoConfigureUserService
+@AutoUserConfigure
 @ComponentScan("auth")
 public class UserUnitAutoConfig {
 

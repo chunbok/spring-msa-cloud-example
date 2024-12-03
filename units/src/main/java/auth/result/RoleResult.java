@@ -1,7 +1,7 @@
-package auth;
+package auth.result;
 
-import jpa.entity.AssignRole;
-import jpa.entity.Role;
+import user.jpa.entity.AssignRole;
+import user.jpa.entity.Role;
 import lombok.Builder;
 
 @Builder

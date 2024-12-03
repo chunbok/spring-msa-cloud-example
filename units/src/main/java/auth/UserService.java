@@ -1,15 +1,17 @@
-package auth.result;
+package auth;
 
-import auth.*;
-import jpa.entity.AssignRole;
-import jpa.entity.Role;
-import jpa.entity.User;
-import jpa.repository.RoleAssignRepository;
-import jpa.repository.RoleRepository;
-import jpa.repository.UserRepository;
+import auth.result.RoleResult;
+import auth.result.SessionResult;
+import auth.result.UserResult;
+import user.jpa.entity.AssignRole;
+import user.jpa.entity.Role;
+import user.jpa.entity.User;
+import user.jpa.repository.RoleAssignRepository;
+import user.jpa.repository.RoleRepository;
+import user.jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import redis.entity.Session;
-import redis.repository.SessionRepository;
+import user.redis.entity.Session;
+import user.redis.repository.SessionRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

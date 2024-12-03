@@ -1,11 +1,11 @@
-package jpa.entity;
+package user.jpa.entity;
 
 
 import auth.AUTH_ROLE;
 import auth.PAIR_ROLE;
 import jakarta.persistence.*;
-import jpa.generator.RoleIdGenerator;
-import jpa.plugs.RoleId;
+import user.jpa.generator.RoleIdGenerator;
+import user.jpa.plugs.RoleId;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 

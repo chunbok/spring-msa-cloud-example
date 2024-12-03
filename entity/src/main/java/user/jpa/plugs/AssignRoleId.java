@@ -1,4 +1,4 @@
-package jpa.plugs;
+package user.jpa.plugs;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

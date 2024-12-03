@@ -10,7 +10,6 @@ configurations {
     }
 }
 
-group = 'yoontae.rab'
 version = '1.0-SNAPSHOT'
 
 repositories {

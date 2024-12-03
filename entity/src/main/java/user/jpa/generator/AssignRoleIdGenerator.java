@@ -1,7 +1,7 @@
-package jpa.generator;
+package user.jpa.generator;
 
-import jpa.entity.AssignRole;
-import jpa.plugs.AssignRoleId;
+import user.jpa.entity.AssignRole;
+import user.jpa.plugs.AssignRoleId;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 

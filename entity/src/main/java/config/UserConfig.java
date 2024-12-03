@@ -7,11 +7,11 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 
 @AutoConfiguration
 @EntityScan(basePackages = {
-        "jpa.entity"
-        , "redis.entity"
+        "user.jpa.entity"
+        , "user.redis.entity"
 })
-@EnableJpaRepositories(basePackages = "jpa.repository")
-@EnableRedisRepositories(basePackages = "redis.repository")
-public class RepositoryConfig {
+@EnableJpaRepositories(basePackages = "user.jpa.repository")
+@EnableRedisRepositories(basePackages = "user.redis.repository")
+public class UserConfig {
 
 }
