@@ -1,3 +1,4 @@
+import annotation.AutoEntityJpaConfigure;
 import auth.AUTH_ROLE;
 import auth.PAIR_ROLE;
 import auth.UnitApplication;
@@ -28,12 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @ContextConfiguration(classes = UnitApplication.class)
-@ComponentScan()
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ImportAutoConfiguration(classes = {
-        UserUnitAutoConfig.class
-})
-@AutoConfigureDataRedis
+@AutoEntityJpaConfigure
 public class JpaTest {
 
     @Autowired
