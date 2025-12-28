@@ -1,0 +1,38 @@
+###
+POST http://localhost:9300/auth/register
+Content-Type: application/json
+
+{
+  "userId" : "chunbok101",
+  "password" : "chunbok101"
+}
+
+### login
+POST http://localhost:9300/auth/login
+Content-Type: application/json
+
+{
+  "userId": "chunbok101",
+  "password": "chunbok101"
+}
+
+### beery taken from gateway
+GET http://localhost:8100/gates/berries/taken
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtc2FfYXV0aCIsImlhdCI6MTc2NjkyMDQ0NSwiZXhwIjoxNzY3MTc5NjQ1fQ.BEnMWARr2FSX_qiF24R7s_t0w20nGMTyYChI1e9OpTkjTJJVgDO59KdciXpSwftbbE_4JOlQAsZS5_008_NF7g
+
+"berry pick"
+
+### nut taken from gateway
+GET http://localhost:8100/gates/nuts/taken
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtc2FfYXV0aCIsImlhdCI6MTc2NjkyMDQ0NSwiZXhwIjoxNzY3MTc5NjQ1fQ.BEnMWARr2FSX_qiF24R7s_t0w20nGMTyYChI1e9OpTkjTJJVgDO59KdciXpSwftbbE_4JOlQAsZS5_008_NF7g
+
+"nut pick"
+
+### beery taken to direct
+GET http://localhost:50862/taken
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtc2FfYXV0aCIsImlhdCI6MTc2NjkyMDQ0NSwiZXhwIjoxNzY3MTc5NjQ1fQ.BEnMWARr2FSX_qiF24R7s_t0w20nGMTyYChI1e9OpTkjTJJVgDO59KdciXpSwftbbE_4JOlQAsZS5_008_NF7g
+
+"berry pick direct"

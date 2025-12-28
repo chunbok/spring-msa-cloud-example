@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 0
 spring:
   application:
     name: berries
@@ -7,3 +7,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${random.int}

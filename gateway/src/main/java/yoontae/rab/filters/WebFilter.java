@@ -81,7 +81,7 @@ public class WebFilter {
     @Bean
     public ServerAuthenticationConverter serverAuthenticationConverter(){
         return exchange -> {
-            String headerToken = exchange.getRequest().getHeaders().get("token").stream().findFirst().orElseThrow(() ->
+            String headerToken = exchange.getRequest().getHeaders().get("Authorization").stream().findFirst().orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No Token Found")
             );
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken("", headerToken);
